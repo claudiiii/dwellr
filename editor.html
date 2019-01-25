@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<head>
+    <title>Dwellr Quest Editor</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Dwellr Quest Editor</h1>
+        <form>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="quest_text">Quest Text:</label>
+                        <textarea class="form-control" id="quest_text" rows="3"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="quest_author">Quest Autor:</label>
+                        <input type="text" class="form-control" id="quest_author" placeholder="Schorsch"></textarea>
+                    </div>
+                </div>
+            </div>    
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="choice1_text">Text für Option 1</label>
+                        <input type="text" class="form-control" id="choice1_text" placeholder="Nein.">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="choice2_text">Text für Option 2</label>
+                        <input type="text" class="form-control" id="choice2_text" placeholder="Ja.">
+                    </div>
+                </div>
+            </div>
+            <!-- Owner Stats -->
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="impact1-owner">&Delta; Owner Score (&plusmn;%)</label>
+                        <input type="number" class="form-control" id="impact1-owner" value="0" min="-100" max="100">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="impact2-owner">&Delta; Owner Score (&plusmn;%)</label>
+                        <input type="number" class="form-control" id="impact2-owner" value="0" min="-100" max="100">
+                    </div>
+                </div>
+            </div>
+            <!-- Nature Stats -->
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="impact1-nature">&Delta; nature Score (&plusmn;%)</label>
+                        <input type="number" class="form-control" id="impact1-nature" value="0" min="-100" max="100">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="impact2-nature">&Delta; nature Score (&plusmn;%)</label>
+                        <input type="number" class="form-control" id="impact2-nature" value="0" min="-100" max="100">
+                    </div>
+                </div>
+            </div>
+            <!-- User Stats -->
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="impact1-user">&Delta; user Score (&plusmn;%)</label>
+                        <input type="number" class="form-control" id="impact1-user" value="0" min="-100" max="100">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="impact2-user">&Delta; user Score (&plusmn;%)</label>
+                        <input type="number" class="form-control" id="impact2-user" value="0" min="-100" max="100">
+                    </div>
+                </div>
+            </div>
+            <!-- Public Stats -->
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="impact1-public">&Delta; public Score (&plusmn;%)</label>
+                        <input type="number" class="form-control" id="impact1-public" value="0" min="-100" max="100">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="impact2-public">&Delta; public Score (&plusmn;%)</label>
+                        <input type="number" class="form-control" id="impact2-public" value="0" min="-100" max="100">
+                    </div>
+                </div>
+            </div>
+            <!-- Lifepoints -->
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="impact1-lifepoints">&Delta; Lifepoints</label>
+                        <input type="number" class="form-control" id="impact1-lifepoints" value="-1">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="impact2-lifepoints">&Delta; Lifepoints</label>
+                        <input type="number" class="form-control" id="impact2-lifepoints" value="-1">
+                    </div>
+                </div>
+            </div>
+            <input type="submit" class="btn btn-dark btn-lg" value="Quest hinzufügen">
+        </form>
+    </div>
+</body>
