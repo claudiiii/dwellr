@@ -28,6 +28,7 @@ class Game {
     this.userScore = 0.5;
     this.publicScore = 0.5;
     this.life = 100;
+    this.age = 0;
 
     this.leftButton.addEventListener("click", () => {
       this.leftClicked();
@@ -78,6 +79,12 @@ class Game {
       this.gameOver = true;
     }
 
+    // wenn life <= 0 -> gameOver
+    if (this.life <= 0) {
+      //endText = endings[0]
+      this.gameOver = true;
+    }
+
     this.questionText.textContent = endText;
   }
 
@@ -97,6 +104,7 @@ class Game {
     
     this.questionText.textContent = text;
     this.authorText.textContent = npc;
+    this.profileText.textContent = this.age;
 
     this.leftActionText.textContent = leftChoice["text"];
     this.rightActionText.textContent = rightChoice === undefined ? leftChoice["text"] : rightChoice["text"];
