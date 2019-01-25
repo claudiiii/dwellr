@@ -21,7 +21,7 @@ class Game {
     this.profileText.textContent = "Das Haus am See"
 
     // general game state
-    this.questIdx = 0;
+    this.activeQuest = null;
     this.gameOver = false;
 
     // player state
@@ -40,13 +40,17 @@ class Game {
       this.rightClicked();
     });
 
+    this.update();
     this.draw();
   }
 
   update() {
-    if (this.questIdx >= quests.length) {
-      return;
-    }
+    const rndIdx = this.getRandomInt(0, quests.length);
+    this.activeQuest = quests[rndIdx];
+    quests.splice(rndIdx, 1)
+
+    console.log(this.activeQuest);
+    console.log(quests);
 
     let endText = "";
     if (this.ownerScore >= 1) {
@@ -92,17 +96,15 @@ class Game {
   }
 
   draw() {
-    if (this.questIdx >= quests.length) {
-      return;
-    } else if (this.gameOver) {
+    if (this.gameOver) {
       this.leftActionText.textContent = "Ok";
       this.rightActionText.textContent = "Ok";
       return;
     }
 
-    const text = quests[this.questIdx]["text"];
-    const npc = quests[this.questIdx]["npc"];
-    const choices = quests[this.questIdx]["choices"];
+    const text = this.activeQuest["text"];
+    const npc = this.activeQuest["npc"];
+    const choices = this.activeQuest["choices"];
     const [ leftChoice, rightChoice ] = choices;
     
     this.questionText.textContent = text;
@@ -120,34 +122,29 @@ class Game {
 
   leftClicked() {
     console.log("left");
-    if (this.questIdx >= quests.length) {
-      return;
-    } else if (this.gameOver) {
+    if (this.gameOver) {
       this.resetGame();
       return;
     }
 
-    const choices = quests[this.questIdx]["choices"];
+    const choices = this.activeQuest["choices"];
     const [ leftChoice, rightChoice ] = choices;
     const impacts = leftChoice["impact"];
 
     this.applyScoreChanges(impacts);
 
-    this.questIdx++;
     this.update();
     this.draw();
   }
 
   rightClicked() {
     console.log("right");
-    if (this.questIdx >= quests.length) {
-      return;
-    } else if (this.gameOver) {
+    if (this.gameOver) {
       this.resetGame();
       return;
     }
 
-    const choices = quests[this.questIdx]["choices"];
+    const choices = this.activeQuest["choices"];
     const [ leftChoice, rightChoice ] = choices;
 
     let impacts = null;
@@ -159,13 +156,12 @@ class Game {
     
     this.applyScoreChanges(impacts);
 
-    this.questIdx++;
     this.update();
     this.draw();
   }
 
   resetGame() {
-    this.questIdx = 0;
+    this.activeQuest = null;
     this.gameOver = false;
 
     this.ownerScore = 0.5;
@@ -184,6 +180,12 @@ class Game {
     this.userScore += impacts["user"] === undefined ? 0 : impacts["user"];
     this.publicScore += impacts["public"] === undefined ? 0 : impacts["public"];
     this.life += impacts["life"] === undefined ? -1 : impacts["life"];
+  }
+
+  getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
   }
 
 }
