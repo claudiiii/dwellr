@@ -83,10 +83,11 @@ class Game {
 
     // wenn life <= 0 -> gameOver
     if (this.life <= 0) {
-      //endText = endings[0]
+      endText = endings[0]["life"];
       this.gameOver = true;
     }
 
+    this.age += 1;
     this.questionText.textContent = endText;
   }
 
@@ -106,7 +107,7 @@ class Game {
     
     this.questionText.textContent = text;
     this.authorText.textContent = npc;
-    this.profileText.textContent = this.age;
+    this.profileText.textContent = this.age+" Jahre";
 
     this.leftActionText.textContent = leftChoice["text"];
     this.rightActionText.textContent = rightChoice === undefined ? leftChoice["text"] : rightChoice["text"];

@@ -19,6 +19,7 @@ const endings = [
   "public": {
     "dawn": "Die Umgebung ist runter gekommen!",
     "dusk": "Die Umgebung ist zu teuer!"
-  }
+  },
+  "life": "Das Haus fällt ohne besonderen Grund zusammen. Glücklicherweise war gerade niemand zu Hause!"
 }
 ];
