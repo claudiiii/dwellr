@@ -24,7 +24,7 @@ const quests = [
       {
         "text": "I dont know!",
         "impact": {
-          "nature": 1
+          "nature": 0.1
         }
       }
     ]
@@ -36,7 +36,7 @@ const quests = [
       {
         "text": "I dont know!",
         "impact": {
-          "public": 1
+          "public": 0.1
         }
       }
     ]
