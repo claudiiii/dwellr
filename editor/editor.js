@@ -1,5 +1,6 @@
 const addQuestBtn = document.querySelector("#add-quest");
 const downloadQuestBtn = document.querySelector("#download-quest");
+const deleteQuestBtn = document.querySelector("#delete-quest");
 const questUpload = document.querySelector("#quest-upload");
 const questList = document.querySelector("#quest-list");
 
@@ -58,30 +59,13 @@ addQuestBtn.addEventListener("click", () => {
   });
 
   renderQuests();
+  resetForm();
+});
 
-  questText.value = "";
-  questAuthor.value = "";
-
-  choiceLeft.value = "";
-  choiceRight.value = "";
-
-  leftOwner.value = 0;
-  rightOwner.value = 0;
-
-  leftNature.value = 0;
-  rightNature.value = 0;
-
-  leftUser.value = 0;
-  rightUser.value = 0;
-
-  leftPublic.value = 0;
-  rightPublic.value = 0;
-
-  leftLife.value = -1;
-  rightLife.value = -1;
-
-  console.log(quests);
-
+deleteQuestBtn.addEventListener("click", () => {
+  deleteQuest();
+  renderQuests();
+  resetForm();
 });
 
 function downloadObjectAsJson(exportObj, exportName){
@@ -151,15 +135,46 @@ function selectQuest(id) {
   rightLife.value = ~~selectedQuest["choices"][0]["impact"]["life"];
 }
 
+function resetForm() {
+  questText.value = "";
+  questAuthor.value = "";
+
+  choiceLeft.value = "";
+  choiceRight.value = "";
+
+  leftOwner.value = 0;
+  rightOwner.value = 0;
+
+  leftNature.value = 0;
+  rightNature.value = 0;
+
+  leftUser.value = 0;
+  rightUser.value = 0;
+
+  leftPublic.value = 0;
+  rightPublic.value = 0;
+
+  leftLife.value = -1;
+  rightLife.value = -1;
+
+  console.log(quests);
+}
+
 function addQuest(questObj) {
 
   if (activeQuest !== null) {
     quests.splice(activeQuest, 1);
   }
 
-  const id = quests.length;
-
   quests.push(questObj);
+
+  activeQuest = null;
+}
+
+function deleteQuest() {
+  if (activeQuest !== null) {
+    quests.splice(activeQuest, 1);
+  }
 
   activeQuest = null;
 }
