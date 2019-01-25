@@ -1,19 +1,19 @@
 body {
-  width: 960px;
+  width: 90vw;
   margin: auto;
+  font-size:4vmin;
   font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
 }
 
 .wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 10px;
-  grid-auto-rows: minmax(100px, auto);
+  grid-gap: 1vmin;
+  grid-auto-rows: minmax(10vh, auto);
 }
 
 .impactbar {
   grid-row: 1;
-  background-color: red;
   box-sizing: border-box;
   padding: 0.5em;
   text-align: center;
@@ -21,9 +21,10 @@ body {
 
 .choices {
   grid-row: 3;
-  background-color: violet;
+  border: thin solid #CCC;
   box-sizing: border-box;
-  padding: 0.5em;
+  padding: 0.7em;
+  height: 30vh;
 }
 
 #owner {
@@ -45,9 +46,11 @@ body {
 #question {
   grid-column: 1 / 5;
   grid-row: 2;
-  background-color: cyan;
+  border: thin solid #CCC;
+  border-radius: 1em 1em 0 0;
   box-sizing: border-box;
-  padding: 0.5em;
+  padding: 0.7em;
+  height: 30vh;
 }
 
 #left {
@@ -64,15 +67,16 @@ body {
   grid-row: 4;
   grid-column: 1 / 5;
   box-sizing: border-box;
-  padding: 0.5em;
-  border: thin solid #333;
+  border-radius: 0 0 1em 1em;
+  padding: 0.7em;
+  border: thin solid #CCC;
   text-align: center;
 }
 
 #profile {
-  grid-row: 5;
+  grid-row: auto;
   grid-column: 1 / 5;
   box-sizing: border-box;
   padding: 0.5em;
-  border: thin solid #333;
+  text-align: center;
 }
