@@ -63,16 +63,15 @@ class Game {
 
   leftClicked() {
     console.log("left");
+    if (this.questIdx >= quests.length) {
+      return;
+    }
 
     const choices = quests[this.questIdx]["choices"];
     const [ leftChoice, rightChoice ] = choices;
     const impacts = leftChoice["impact"];
 
-    this.ownerScore += impacts["owner"];
-    this.natureScore += impacts["nature"];
-    this.userScore += impacts["user"];
-    this.publicScore += impacts["public"];
-    this.life += impacts["life"];
+    this.applyScoreChanges(impacts);
 
     this.questIdx++;
     this.draw();
@@ -80,6 +79,9 @@ class Game {
 
   rightClicked() {
     console.log("right");
+    if (this.questIdx >= quests.length) {
+      return;
+    }
 
     const choices = quests[this.questIdx]["choices"];
     const [ leftChoice, rightChoice ] = choices;
@@ -91,14 +93,18 @@ class Game {
       impacts = rightChoice["impact"];
     }
     
-    this.ownerScore += impacts["owner"];
-    this.natureScore += impacts["nature"];
-    this.userScore += impacts["user"];
-    this.publicScore += impacts["public"];
-    this.life += impacts["life"];
+    this.applyScoreChanges(impacts);
 
     this.questIdx++;
     this.draw();
+  }
+
+  applyScoreChanges(impacts) {
+    this.ownerScore += impacts["owner"] === undefined ? 0 : impacts["owner"];
+    this.natureScore += impacts["nature"] === undefined ? 0 : impacts["nature"];
+    this.userScore += impacts["user"] === undefined ? 0 : impacts["user"];
+    this.publicScore += impacts["public"] === undefined ? 0 : impacts["public"];
+    this.life += impacts["life"] === undefined ? -1 : impacts["life"];
   }
 
 }

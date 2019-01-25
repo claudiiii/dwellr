@@ -6,21 +6,13 @@ const quests = [
       {
         "text": "Good!",
         "impact": {
-          "owner": 0,
-          "user": 1,
-          "nature": 0,
-          "public": 0,
-          "life": -1
+          "user": 1
         }
       },
       {
         "text": "Bad!",
         "impact": {
-          "owner": 1,
-          "user": 0,
-          "nature": 0,
-          "public": 0,
-          "life": -1
+          "owner": 1
         }
       }
     ]
@@ -32,11 +24,7 @@ const quests = [
       {
         "text": "I dont know!",
         "impact": {
-          "owner": 0,
-          "user": 1,
-          "nature": 0,
-          "public": 0,
-          "life": -1
+          "user": 1
         }
       }
     ]
