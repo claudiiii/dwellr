@@ -1,0 +1,35 @@
+body {
+  width: 960px;
+  margin: auto;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+}
+
+#owner {
+  grid-column: 1;
+  grid-row: 1;
+  background-color: red;
+}
+
+#nature {
+  grid-column: 2;
+  grid-row: 1;
+  background-color: green;
+}
+
+#user {
+  grid-column: 1;
+  grid-row: 2;
+  background-color: blue;
+}
+
+#public {
+  grid-column: 2;
+  grid-row: 2;
+  background-color: orange;
+}
