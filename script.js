@@ -20,6 +20,8 @@ class Game {
 
     this.profileText.textContent = "Das Haus am See"
 
+    this.quests = quests.slice();
+
     // general game state
     this.activeQuest = null;
     this.gameOver = false;
@@ -45,12 +47,13 @@ class Game {
   }
 
   update() {
-    const rndIdx = this.getRandomInt(0, quests.length);
-    this.activeQuest = quests[rndIdx];
-    quests.splice(rndIdx, 1)
-
-    console.log(this.activeQuest);
-    console.log(quests);
+    if (this.quests.length <= 0) {
+      this.activeQuest = null;
+    } else {
+      const rndIdx = this.getRandomInt(0, this.quests.length);
+      this.activeQuest = this.quests[rndIdx];
+      this.quests.splice(rndIdx, 1)
+    }
 
     let endText = "";
     if (this.ownerScore >= 1) {
@@ -91,6 +94,11 @@ class Game {
       this.gameOver = true;
     }
 
+    if (this.quests.length <= 0) {
+      endText = endings[0]["life"];
+      this.gameOver = true;
+    }
+
     this.age += 1;
     this.questionText.textContent = endText;
   }
@@ -109,7 +117,7 @@ class Game {
     
     this.questionText.textContent = text;
     this.authorText.textContent = npc;
-    this.profileText.textContent = this.age+" Jahre";
+    this.profileText.textContent = this.age + (this.age === 1 ? " Year" : " Years");
 
     this.leftActionText.textContent = leftChoice["text"];
     this.rightActionText.textContent = rightChoice === undefined ? leftChoice["text"] : rightChoice["text"];
@@ -121,7 +129,6 @@ class Game {
   }
 
   leftClicked() {
-    console.log("left");
     if (this.gameOver) {
       this.resetGame();
       return;
@@ -138,7 +145,6 @@ class Game {
   }
 
   rightClicked() {
-    console.log("right");
     if (this.gameOver) {
       this.resetGame();
       return;
@@ -161,6 +167,8 @@ class Game {
   }
 
   resetGame() {
+    this.quests = quests.slice();
+
     this.activeQuest = null;
     this.gameOver = false;
 
@@ -169,6 +177,8 @@ class Game {
     this.userScore = 0.5;
     this.publicScore = 0.5;
     this.life = 100;
+
+    this.age = 0;
 
     this.update();
     this.draw();
