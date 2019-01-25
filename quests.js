@@ -24,5 +24,21 @@ const quests = [
         }
       }
     ]
+  },
+  {
+    "text": "What time is it?",
+    "npc": "John Snow",
+    "choices": [
+      {
+        "text": "I dont know!",
+        "impact": {
+          "owner": 0,
+          "user": 1,
+          "nature": 0,
+          "public": 0,
+          "life": -1
+        }
+      }
+    ]
   }
 ];

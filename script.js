@@ -40,6 +40,10 @@ class Game {
   }
 
   fillQuests() {
+    if (this.questIdx >= quests.length) {
+      return;
+    }
+
     const text = quests[this.questIdx]["text"];
     const npc = quests[this.questIdx]["npc"];
     const choices = quests[this.questIdx]["choices"];
@@ -49,7 +53,7 @@ class Game {
     this.authorText.textContent = npc;
 
     this.leftActionText.textContent = leftChoice["text"];
-    this.rightActionText.textContent = rightChoice["text"];
+    this.rightActionText.textContent = rightChoice === undefined ? leftChoice["text"] : rightChoice["text"];
 
     this.ownerScoreText.textContent = this.ownerScore;
     this.natureScoreText.textContent = this.natureScore;
@@ -70,11 +74,31 @@ class Game {
     this.publicScore += impacts["public"];
     this.life += impacts["life"];
 
+    this.questIdx++;
     this.fillQuests();
   }
 
   rightClicked() {
     console.log("right");
+
+    const choices = quests[this.questIdx]["choices"];
+    const [ leftChoice, rightChoice ] = choices;
+
+    let impacts = null;
+    if (rightChoice === undefined) {
+      impacts = leftChoice["impact"];
+    } else {
+      impacts = rightChoice["impact"];
+    }
+    
+    this.ownerScore += impacts["owner"];
+    this.natureScore += impacts["nature"];
+    this.userScore += impacts["user"];
+    this.publicScore += impacts["public"];
+    this.life += impacts["life"];
+
+    this.questIdx++;
+    this.fillQuests();
   }
 
 }
