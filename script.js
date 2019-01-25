@@ -20,6 +20,7 @@ class Game {
 
     // general game state
     this.questIdx = 0;
+    this.gameOver = false;
 
     // player state
     this.ownerScore = 0.5;
@@ -39,8 +40,53 @@ class Game {
     this.draw();
   }
 
+  update() {
+    if (this.questIdx >= quests.length) {
+      return;
+    }
+
+    let endText = "";
+    if (this.ownerScore >= 1) {
+      endText = endings[0]["owner"]["dusk"];
+      this.gameOver = true;
+    } else if (this.ownerScore <= 0) {
+      endText = endings[0]["owner"]["dawn"];
+      this.gameOver = true;
+    }
+
+    if (this.natureScore >= 1) {
+      endText = endings[0]["nature"]["dusk"];
+      this.gameOver = true;
+    } else if (this.natureScore <= 0) {
+      endText = endings[0]["nature"]["dawn"];
+      this.gameOver = true;
+    }
+
+    if (this.userScore >= 1) {
+      endText = endings[0]["user"]["dusk"];
+      this.gameOver = true;
+    } else if (this.userScore <= 0) {
+      endText = endings[0]["user"]["dawn"];
+      this.gameOver = true;
+    }
+
+    if (this.publicScore >= 1) {
+      endText = endings[0]["public"]["dusk"];
+      this.gameOver = true;
+    } else if (this.publicScore <= 0) {
+      endText = endings[0]["public"]["dawn"];
+      this.gameOver = true;
+    }
+
+    this.questionText.textContent = endText;
+  }
+
   draw() {
     if (this.questIdx >= quests.length) {
+      return;
+    } else if (this.gameOver) {
+      this.leftActionText.textContent = "Ok";
+      this.rightActionText.textContent = "Ok";
       return;
     }
 
@@ -65,6 +111,9 @@ class Game {
     console.log("left");
     if (this.questIdx >= quests.length) {
       return;
+    } else if (this.gameOver) {
+      this.resetGame();
+      return;
     }
 
     const choices = quests[this.questIdx]["choices"];
@@ -74,12 +123,16 @@ class Game {
     this.applyScoreChanges(impacts);
 
     this.questIdx++;
+    this.update();
     this.draw();
   }
 
   rightClicked() {
     console.log("right");
     if (this.questIdx >= quests.length) {
+      return;
+    } else if (this.gameOver) {
+      this.resetGame();
       return;
     }
 
@@ -96,6 +149,21 @@ class Game {
     this.applyScoreChanges(impacts);
 
     this.questIdx++;
+    this.update();
+    this.draw();
+  }
+
+  resetGame() {
+    this.questIdx = 0;
+    this.gameOver = false;
+
+    this.ownerScore = 0.5;
+    this.natureScore = 0.5;
+    this.userScore = 0.5;
+    this.publicScore = 0.5;
+    this.life = 100;
+
+    this.update();
     this.draw();
   }
 

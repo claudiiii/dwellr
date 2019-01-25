@@ -6,13 +6,13 @@ const quests = [
       {
         "text": "Good!",
         "impact": {
-          "user": 1
+          "nature": 1
         }
       },
       {
         "text": "Bad!",
         "impact": {
-          "owner": 1
+          "public": 1
         }
       }
     ]
@@ -24,7 +24,19 @@ const quests = [
       {
         "text": "I dont know!",
         "impact": {
-          "user": 1
+          "nature": 1
+        }
+      }
+    ]
+  },
+  {
+    "text": "What time is it?",
+    "npc": "Blah Blubb",
+    "choices": [
+      {
+        "text": "I dont know!",
+        "impact": {
+          "public": 1
         }
       }
     ]
