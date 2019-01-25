@@ -10,13 +10,15 @@ class Game {
     this.userScoreText = document.querySelector("#user").querySelector(".score");
     this.publicScoreText = document.querySelector("#public").querySelector(".score");
 
-    this.questionText = document.querySelector("#question"); 
+    this.questionText = document.querySelector("#question");
     
     this.leftActionText = document.querySelector("#left").querySelector(".action"); 
     this.rightActionText = document.querySelector("#right").querySelector(".action");
 
     this.authorText = document.querySelector("#author");
     this.profileText = document.querySelector("#profile");
+
+    this.profileText.textContent = "Das Haus am See"
 
     // general game state
     this.questIdx = 0;

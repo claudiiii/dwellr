@@ -6,13 +6,13 @@ const quests = [
       {
         "text": "Good!",
         "impact": {
-          "nature": 1
+          "nature": 0.2
         }
       },
       {
         "text": "Bad!",
         "impact": {
-          "public": 1
+          "public": -0.3
         }
       }
     ]
