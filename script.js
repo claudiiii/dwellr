@@ -26,6 +26,7 @@ class Game {
     this.natureScore = 0.5;
     this.userScore = 0.5;
     this.publicScore = 0.5;
+    this.life = 100;
 
     this.leftButton.addEventListener("click", () => {
       this.leftClicked();
@@ -49,10 +50,27 @@ class Game {
 
     this.leftActionText.textContent = leftChoice["text"];
     this.rightActionText.textContent = rightChoice["text"];
+
+    this.ownerScoreText.textContent = this.ownerScore;
+    this.natureScoreText.textContent = this.natureScore;
+    this.userScoreText.textContent = this.userScore;
+    this.publicScoreText.textContent = this.publicScore;
   }
 
   leftClicked() {
     console.log("left");
+
+    const choices = quests[this.questIdx]["choices"];
+    const [ leftChoice, rightChoice ] = choices;
+    const impacts = leftChoice["impact"];
+
+    this.ownerScore += impacts["owner"];
+    this.natureScore += impacts["nature"];
+    this.userScore += impacts["user"];
+    this.publicScore += impacts["public"];
+    this.life += impacts["life"];
+
+    this.fillQuests();
   }
 
   rightClicked() {
