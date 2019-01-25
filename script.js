@@ -9,3 +9,6 @@ leftButton.addEventListener("click", () => {
 rightButton.addEventListener("click", () => {
   console.log("right");
 })
+
+const quests = document.querySelector("quests");
+console.log(quests);
