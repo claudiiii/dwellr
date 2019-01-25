@@ -185,11 +185,11 @@ class Game {
   }
 
   applyScoreChanges(impacts) {
-    this.ownerScore += impacts["owner"] === undefined ? 0 : impacts["owner"];
-    this.natureScore += impacts["nature"] === undefined ? 0 : impacts["nature"];
-    this.userScore += impacts["user"] === undefined ? 0 : impacts["user"];
-    this.publicScore += impacts["public"] === undefined ? 0 : impacts["public"];
-    this.life += impacts["life"] === undefined ? -1 : impacts["life"];
+    this.ownerScore += this.roundToTwo(impacts["owner"] === undefined ? 0 : impacts["owner"]);
+    this.natureScore += this.roundToTwo(impacts["nature"] === undefined ? 0 : impacts["nature"]);
+    this.userScore += this.roundToTwo(impacts["user"] === undefined ? 0 : impacts["user"]);
+    this.publicScore += this.roundToTwo(impacts["public"] === undefined ? 0 : impacts["public"]);
+    this.life += this.roundToTwo(impacts["life"] === undefined ? -1 : impacts["life"]);
   }
 
   getRandomInt(min, max) {
@@ -198,6 +198,9 @@ class Game {
     return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
   }
 
+  roundToTwo(num) {    
+    return +(Math.round(num + "e+2")  + "e-2");
+  }
 }
 
 
