@@ -36,10 +36,10 @@ class Game {
       this.rightClicked();
     });
 
-    this.fillQuests();
+    this.draw();
   }
 
-  fillQuests() {
+  draw() {
     if (this.questIdx >= quests.length) {
       return;
     }
@@ -75,7 +75,7 @@ class Game {
     this.life += impacts["life"];
 
     this.questIdx++;
-    this.fillQuests();
+    this.draw();
   }
 
   rightClicked() {
@@ -98,7 +98,7 @@ class Game {
     this.life += impacts["life"];
 
     this.questIdx++;
-    this.fillQuests();
+    this.draw();
   }
 
 }
