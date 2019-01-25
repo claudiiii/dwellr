@@ -1,4 +1,4 @@
-[
+const quests = [
   {
     "text": "How are you today?",
     "npc": "John Snow",
@@ -25,4 +25,4 @@
       }
     ]
   }
-]
+];
