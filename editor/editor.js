@@ -1,5 +1,7 @@
 const addQuestBtn = document.querySelector("#add-quest");
 const downloadQuestBtn = document.querySelector("#download-quest");
+const questUpload = document.querySelector("#quest-upload");
+const questList = document.querySelector("#quest-list");
 
 const questText = document.querySelector("#quest_text");
 const questAuthor = document.querySelector("#quest_author");
@@ -22,11 +24,13 @@ const rightPublic = document.querySelector("#impact2-public");
 const leftLife = document.querySelector("#impact1-lifepoints");
 const rightLife = document.querySelector("#impact2-lifepoints");
 
-const quests = [];
+let quests = [];
+
+let activeQuest = null;
 
 addQuestBtn.addEventListener("click", () => {
 
-  quests.push({
+  addQuest({
     "text": questText.value,
     "npc": questAuthor.value,
     "choices": [
@@ -52,6 +56,8 @@ addQuestBtn.addEventListener("click", () => {
       }
     ]
   });
+
+  renderQuests();
 
   questText.value = "";
   questAuthor.value = "";
@@ -91,3 +97,77 @@ function downloadObjectAsJson(exportObj, exportName){
 downloadQuestBtn.addEventListener("click", () => {
   downloadObjectAsJson(quests, "quests")
 });
+
+function parseQuestFile(file) {
+  const cleaned = file.replace("const quests = ", "").replace(";", "");
+  questData = JSON.parse(cleaned);
+  for (let quest of questData) {
+    addQuest(quest);
+  }
+  renderQuests();
+}
+
+questUpload.addEventListener("change", (e) => {
+  const file = e.target.files[0];
+  if (!file) {
+    return;
+  }
+
+  const reader = new FileReader();
+
+  reader.onload = (e) => {
+    const contents = e.target.result;
+    parseQuestFile(contents);
+  };
+
+  reader.readAsText(file);
+});
+
+function selectQuest(id) {
+  activeQuest = id;
+  const selectedQuest = quests[id];
+
+  console.log(selectedQuest);
+
+  questText.value = selectedQuest["text"];
+  questAuthor.value = selectedQuest["npc"];
+
+  choiceLeft.value = selectedQuest["choices"][0]["text"];
+  choiceRight.value = selectedQuest["choices"][1]["text"];
+
+  leftOwner.value = selectedQuest["choices"][0]["impact"]["owner"] * 100;
+  rightOwner.value = selectedQuest["choices"][1]["impact"]["owner"] * 100;
+
+  leftNature.value = selectedQuest["choices"][0]["impact"]["nature"] * 100;
+  rightNature.value = selectedQuest["choices"][1]["impact"]["nature"] * 100;
+
+  leftUser.value = selectedQuest["choices"][0]["impact"]["user"] * 100;
+  rightUser.value = selectedQuest["choices"][1]["impact"]["user"] * 100;
+
+  leftPublic.value = selectedQuest["choices"][0]["impact"]["public"] * 100;
+  rightPublic.value = selectedQuest["choices"][0]["impact"]["public"] * 100;
+
+  leftLife.value = ~~selectedQuest["choices"][0]["impact"]["life"];
+  rightLife.value = ~~selectedQuest["choices"][0]["impact"]["life"];
+}
+
+function addQuest(questObj) {
+
+  if (activeQuest !== null) {
+    quests.splice(activeQuest, 1);
+  }
+
+  const id = quests.length;
+
+  quests.push(questObj);
+
+  activeQuest = null;
+}
+
+function renderQuests() {
+  questList.innerHTML = "";
+
+  quests.forEach((quest, i) => {
+    questList.innerHTML += `<button type="button" class="list-group-item list-group-item-action"  onclick="selectQuest(${i});">${quest["text"]}</button>`
+  });
+}
