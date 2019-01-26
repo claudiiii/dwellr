@@ -185,10 +185,14 @@ class Game {
   }
 
   applyScoreChanges(impacts) {
-    this.ownerScore += this.roundToTwo(impacts["owner"] === undefined ? 0 : impacts["owner"]);
-    this.natureScore += this.roundToTwo(impacts["nature"] === undefined ? 0 : impacts["nature"]);
-    this.userScore += this.roundToTwo(impacts["user"] === undefined ? 0 : impacts["user"]);
-    this.publicScore += this.roundToTwo(impacts["public"] === undefined ? 0 : impacts["public"]);
+    this.ownerScore = this.roundToTwo(
+      this.ownerScore + (impacts["owner"] === undefined ? 0 : impacts["owner"]));
+    this.natureScore = this.roundToTwo(
+      this.natureScore + (impacts["nature"] === undefined ? 0 : impacts["nature"]));
+    this.userScore = this.roundToTwo(
+      this.userScore + (impacts["user"] === undefined ? 0 : impacts["user"]));
+    this.publicScore = this.roundToTwo(
+      this.publicScore + (impacts["public"] === undefined ? 0 : impacts["public"]));
     this.life += this.roundToTwo(impacts["life"] === undefined ? -1 : impacts["life"]);
   }
 
