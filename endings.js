@@ -1,6 +1,7 @@
 
 // dawn = 0
 // dusk = 1
+// Todo: add languages
 
 const endings = [
 {
