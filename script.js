@@ -6,8 +6,8 @@ class Game {
 
     this.ownerScoreProgressBar = document.querySelector("#ownerScore").querySelector(".score");
     this.natureScoreText = document.querySelector("#nature").querySelector(".score");
-    this.userScoreText = document.querySelector("#user").querySelector(".score");
-    this.publicScoreText = document.querySelector("#public").querySelector(".score");
+    this.userScoreProgressBar = document.querySelector("#userScore").querySelector(".score");
+    this.publicScoreProgressBar = document.querySelector("#publicScore").querySelector(".score");
 
     this.questionText = document.querySelector("#question");
     
@@ -121,10 +121,10 @@ class Game {
     this.leftActionText.textContent = leftChoice["text"];
     this.rightActionText.textContent = rightChoice === undefined ? leftChoice["text"] : rightChoice["text"];
 
-    this.ownerScoreProgressBar.setAttribute("offset", this.ownerScore);
+    this.ownerScoreProgressBar.setAttribute("offset", 1 - this.ownerScore);
     this.natureScoreText.textContent = this.natureScore;
-    this.userScoreText.textContent = this.userScore;
-    this.publicScoreText.textContent = this.publicScore;
+    this.userScoreProgressBar.setAttribute("offset", 1 - this.userScore);
+    this.publicScoreProgressBar.setAttribute("offset", 1 - this.publicScore);
   }
 
   leftClicked() {
