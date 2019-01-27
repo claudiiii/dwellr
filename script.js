@@ -4,7 +4,7 @@ class Game {
     this.leftButton = document.querySelector("#left");
     this.rightButton = document.querySelector("#right");
 
-    this.ownerScoreText = document.querySelector("#ownerScore").querySelector(".score");
+    this.ownerScoreProgressBar = document.querySelector("#ownerScore").querySelector(".score");
     this.natureScoreText = document.querySelector("#nature").querySelector(".score");
     this.userScoreText = document.querySelector("#user").querySelector(".score");
     this.publicScoreText = document.querySelector("#public").querySelector(".score");
@@ -121,7 +121,7 @@ class Game {
     this.leftActionText.textContent = leftChoice["text"];
     this.rightActionText.textContent = rightChoice === undefined ? leftChoice["text"] : rightChoice["text"];
 
-    this.ownerScoreText.setAttribute("offset", this.ownerScore);
+    this.ownerScoreProgressBar.setAttribute("offset", this.ownerScore);
     this.natureScoreText.textContent = this.natureScore;
     this.userScoreText.textContent = this.userScore;
     this.publicScoreText.textContent = this.publicScore;
