@@ -104,6 +104,12 @@ class Game {
   }
 
   draw() {
+    this.ownerScoreProgressBar.setAttribute("offset", 1 - this.ownerScore);
+    this.natureScoreProgressBar1.setAttribute("offset", 1 - this.natureScore);
+    this.natureScoreProgressBar2.setAttribute("offset", 1 - this.natureScore);
+    this.userScoreProgressBar.setAttribute("offset", 1 - this.userScore);
+    this.publicScoreProgressBar.setAttribute("offset", 1 - this.publicScore);
+
     if (this.gameOver) {
       this.leftActionText.textContent = "Ok";
       this.rightActionText.textContent = "Ok";
@@ -122,11 +128,6 @@ class Game {
     this.leftActionText.textContent = leftChoice["text"];
     this.rightActionText.textContent = rightChoice === undefined ? leftChoice["text"] : rightChoice["text"];
 
-    this.ownerScoreProgressBar.setAttribute("offset", 1 - this.ownerScore);
-    this.natureScoreProgressBar1.setAttribute("offset", 1 - this.natureScore);
-    this.natureScoreProgressBar2.setAttribute("offset", 1 - this.natureScore);
-    this.userScoreProgressBar.setAttribute("offset", 1 - this.userScore);
-    this.publicScoreProgressBar.setAttribute("offset", 1 - this.publicScore);
   }
 
   leftClicked() {
