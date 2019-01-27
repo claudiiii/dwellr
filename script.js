@@ -5,7 +5,7 @@ class Game {
     this.rightButton = document.querySelector("#right");
 
     this.ownerScoreProgressBar = document.querySelector("#ownerScore").querySelector(".score");
-    this.natureScoreProgressBar = document.querySelector("#natureScore").querySelector(".score");
+    this.natureScoreProgressBar = document.querySelector(".natureScore").querySelector(".score");
     this.userScoreProgressBar = document.querySelector("#userScore").querySelector(".score");
     this.publicScoreProgressBar = document.querySelector("#publicScore").querySelector(".score");
 
