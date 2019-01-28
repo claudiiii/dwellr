@@ -25,6 +25,33 @@ const rightPublic = document.querySelector("#impact2-public");
 const leftLife = document.querySelector("#impact1-lifepoints");
 const rightLife = document.querySelector("#impact2-lifepoints");
 
+const constraints = {
+  life : {
+    min : document.querySelector("#min-lifepoints"),
+    max : document.querySelector("#max-lifepoints")
+  },
+  age : {
+    min : document.querySelector("#min-age"),
+    max : document.querySelector("#max-age")
+  },
+  owner : {
+    min : document.querySelector("#min-owner"),
+    max : document.querySelector("#max-owner")
+  },
+  nature : {
+    min : document.querySelector("#min-nature"),
+    max : document.querySelector("#max-nature")
+  },
+  user : {
+    min : document.querySelector("#min-user"),
+    max : document.querySelector("#max-user")
+  },
+  public : {
+    min : document.querySelector("#min-public"),
+    max : document.querySelector("#max-public")
+  }
+};
+
 let quests = [];
 
 let activeQuest = null;
@@ -55,7 +82,34 @@ addQuestBtn.addEventListener("click", () => {
           "life": leftLife.value
         }
       }
-    ]
+    ],
+    "language": "DE",
+    "constraints": {
+      "life":{
+        "min": constraints.life.min.value,
+        "max": constraints.life.max.value
+      },
+      "age":{
+        "min": constraints.age.min.value,
+        "max": constraints.age.max.value
+      },
+      "owner":{
+        "min": constraints.owner.min.value / 100,
+        "max": constraints.owner.max.value / 100
+      },
+      "nature":{
+        "min": constraints.nature.min.value / 100,
+        "max": constraints.nature.max.value / 100
+      },
+      "user":{
+        "min": constraints.user.min.value / 100,
+        "max": constraints.user.max.value / 100
+      },
+      "public":{
+        "min": constraints.public.min.value / 100,
+        "max": constraints.public.max.value / 100
+      }
+    }
   });
 
   renderQuests();
@@ -113,6 +167,23 @@ function selectQuest(id) {
 
   console.log(selectedQuest);
 
+  if(selectedQuest["constraints"] != null){
+    constraints.life.min.value = selectedQuest["constraints"]["life"]["min"];
+    constraints.life.max.value = selectedQuest["constraints"]["life"]["max"];
+    constraints.age.min.value = selectedQuest["constraints"]["age"]["min"];
+    constraints.age.max.value = selectedQuest["constraints"]["age"]["max"];
+    constraints.owner.min.value = selectedQuest["constraints"]["owner"]["min"] * 100;
+    constraints.owner.max.value = selectedQuest["constraints"]["owner"]["max"] * 100;
+    constraints.nature.min.value = selectedQuest["constraints"]["nature"]["min"] * 100;
+    constraints.nature.max.value = selectedQuest["constraints"]["nature"]["max"] * 100;
+    constraints.user.min.value = selectedQuest["constraints"]["user"]["min"] * 100;
+    constraints.user.max.value = selectedQuest["constraints"]["user"]["max"] * 100;
+    constraints.public.min.value = selectedQuest["constraints"]["public"]["min"] * 100;
+    constraints.public.max.value = selectedQuest["constraints"]["public"]["max"] * 100;
+  }else{
+    resetForm();
+  }
+
   questText.value = selectedQuest["text"];
   questAuthor.value = selectedQuest["npc"];
 
@@ -129,10 +200,10 @@ function selectQuest(id) {
   rightUser.value = selectedQuest["choices"][1]["impact"]["user"] * 100;
 
   leftPublic.value = selectedQuest["choices"][0]["impact"]["public"] * 100;
-  rightPublic.value = selectedQuest["choices"][0]["impact"]["public"] * 100;
+  rightPublic.value = selectedQuest["choices"][1]["impact"]["public"] * 100;
 
   leftLife.value = ~~selectedQuest["choices"][0]["impact"]["life"];
-  rightLife.value = ~~selectedQuest["choices"][0]["impact"]["life"];
+  rightLife.value = ~~selectedQuest["choices"][1]["impact"]["life"];
 }
 
 function resetForm() {
@@ -156,6 +227,19 @@ function resetForm() {
 
   leftLife.value = -1;
   rightLife.value = -1;
+
+  constraints.life.min.value = 0;
+  constraints.life.max.value = 1000;
+  constraints.age.min.value = 0;
+  constraints.age.max.value = 1000;
+  constraints.owner.min.value = 0;
+  constraints.owner.max.value = 100;
+  constraints.nature.min.value = 0;
+  constraints.nature.max.value = 100;
+  constraints.user.min.value = 0;
+  constraints.user.max.value = 100;
+  constraints.public.min.value = 0;
+  constraints.public.max.value = 100;
 
   console.log(quests);
 }

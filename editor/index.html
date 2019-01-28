@@ -123,9 +123,119 @@
             </div>
           </div>
         </div>
-        <button id="add-quest" class="btn btn-success">Quest hinzufügen</button>
-        <button id="download-quest" class="btn btn-dark">Download Quests</button>
-        <button id="delete-quest" class="btn btn-danger">Diesen Quest löschen</button>
+        <div class="row">
+          <div class="col">
+            <details class="form-group">
+              <summary>
+                <div class="btn btn-warning">Show advanced settings</div>
+              </summary>
+              <!-- lifepoint restrictions -->
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="min-lifepoints">Minimum current lifepoints to see this quest</label>
+                    <input type="number" class="form-control" id="min-lifepoints" min="0" value="0">
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label for="max-lifepoints">Maximum current lifepoints to see this quest</label>
+                    <input type="number" class="form-control" id="max-lifepoints" min="0" value="1000">
+                  </div>
+                </div>
+              </div>
+              <!-- age restrictions -->
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="min-age">Minimum current age to see this quest (years)</label>
+                    <input type="number" class="form-control" id="min-age" min="0" value="0">
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label for="max-age">Maximum current age to see this quest (years)</label>
+                    <input type="number" class="form-control" id="max-age" min="0" value="1000">
+                  </div>
+                </div>
+              </div>
+              <!-- owner score restrictions -->
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="min-owner">Minimum current owner score to see this quest (%)</label>
+                    <input type="number" class="form-control" id="min-owner" min="0" value="0" max="100">
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label for="max-owner">Maximum current owner score to see this quest (%)</label>
+                    <input type="number" class="form-control" id="max-owner" min="0" value="100" max="100">
+                  </div>
+                </div>
+              </div>
+              <!-- user score restrictions -->
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="min-user">Minimum current user score to see this quest (%)</label>
+                    <input type="number" class="form-control" id="min-user" min="0" value="0" max="100">
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label for="max-user">Maximum current user score to see this quest (%)</label>
+                    <input type="number" class="form-control" id="max-user" min="0" value="100" max="100">
+                  </div>
+                </div>
+              </div>
+              <!-- nature score restrictions -->
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="min-nature">Minimum current nature score to see this quest (%)</label>
+                    <input type="number" class="form-control" id="min-nature" min="0" value="0" max="100">
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label for="max-nature">Maximum current nature score to see this quest (%)</label>
+                    <input type="number" class="form-control" id="max-nature" min="0" value="100" max="100">
+                  </div>
+                </div>
+              </div>
+              <!-- public score restrictions -->
+              <div class="row">
+                <div class="col">
+                  <div class="form-group">
+                    <label for="min-public">Minimum current public score to see this quest (%)</label>
+                    <input type="number" class="form-control" id="min-public" min="0" value="0" max="100">
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-group">
+                    <label for="max-public">Maximum current public score to see this quest (%)</label>
+                    <input type="number" class="form-control" id="max-public" min="0" value="100" max="100">
+                  </div>
+                </div>
+              </div>
+
+              <!-- date restrictions ? regex?-->
+              <!-- time-of-day restrictions ?-->
+              <!-- day-of-week restrictions ?-->
+              <!-- quest campains / previous decisions -->
+            </details>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <button id="add-quest" class="btn btn-success">Quest hinzufügen</button>
+              <button id="download-quest" class="btn btn-dark">Download Quests</button>
+              <button id="delete-quest" class="btn btn-danger">Diesen Quest löschen</button>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="col-3">
         <div id="quest-list" class="list-group">
